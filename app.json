@@ -1,0 +1,29 @@
+{
+  "pages": [
+    "pages/home/home",
+    "pages/test/test",
+    "pages/result/result",
+    "pages/analysis/analysis",
+    "pages/detail/detail"
+
+  ],
+  
+  "tabBar": {
+    "list": [
+      {
+        "pagePath": "pages/home/home",
+        "text": "首页",
+        "iconPath": "/images/tab-home.png",
+        "selectedIconPath": "/images/tab-home-active.png"
+      },
+      {
+        "pagePath": "pages/analysis/analysis",
+        "text": "人格解析",
+        "iconPath": "/images/tab-analysis.png",
+        "selectedIconPath": "/images/tab-analysis-active.png"
+      }
+    ],
+    "color": "#999",
+    "selectedColor": "#4A90E2"
+  }
+}
