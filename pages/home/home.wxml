@@ -1,0 +1,37 @@
+<!-- A区：轮播图 -->
+<swiper class="banner" autoplay circular interval="3000">
+  <swiper-item wx:for="{{banners}}" wx:key="index" style="height: 291rpx; display: block; box-sizing: border-box; left: 0rpx; top: 0rpx">
+    <image style="width: 760rpx; display: inline-block; box-sizing: border-box; height: 291rpx" src="{{item}}" mode="aspectFill"/>
+  </swiper-item>
+</swiper>
+
+<!-- B区：滚动条 -->
+<view class="marquee" style="height: 50rpx; display: block; box-sizing: border-box; position: relative; left: 0rpx; top: -70rpx">
+  <text class="marquee-text" style="position: relative; left: 387rpx; top: -17rpx">本测试精心挑选 可放心测试</text>
+</view>
+
+<!-- C区：按钮组 -->
+<view class="btn-group" style="position: relative; left: 50rpx; top: -60rpx; width: 650rpx; height: 75rpx; display: flex; box-sizing: border-box">
+  <button class="btn btn1" bindtap="handleBtn1" style="width: 293rpx; height: 75rpx; display: block; box-sizing: border-box; left: 342rpx; top: 0rpx; position: relative">分享给小伙伴</button>
+  <button class="btn btn2" bindtap="handleBtn2" style="width: 293rpx; height: 75rpx; display: block; box-sizing: border-box; left: -342rpx; top: 0rpx; position: relative">测试说明</button>
+</view>
+
+<!-- D区：测试入口 -->
+<view class="grid-title" style="position: relative; left: 0rpx; box-sizing: border-box; width: 760rpx; top: -50rpx; height: 75rpx; display: block">选择测试类型(测试过程及结果均无广且免费)</view>
+<view class="grid-container" style="height: 400rpx; display: grid; box-sizing: border-box; position: relative; left: 0rpx; top: -50rpx">
+  <view 
+    class="grid-item" 
+    wx:for="{{tests}}" 
+    wx:key="index"
+    bindtap="goTest"
+    data-id="{{item.id}}"
+   style="width: 227rpx; display: block; box-sizing: border-box; height: 374rpx">
+    <image style="width: 189rpx; height: 322rpx; display: inline-block; box-sizing: border-box; position: relative; left: 0rpx; top: -20rpx" src="{{item.img}}" mode="aspectFit"/>
+    <text class="grid-text" style="position: relative; left: 0rpx; top: -37rpx">{{item.title}}</text>
+  </view>
+</view>
+
+<!-- E区：文档区 -->
+<view class="doc-area" style="height: 743rpx; display: block; box-sizing: border-box; position: relative; left: 0rpx; top: -24rpx">
+  <rich-text nodes="{{docContent}}" style="height: 362rpx; display: inline; box-sizing: content-box"></rich-text>
+</view>

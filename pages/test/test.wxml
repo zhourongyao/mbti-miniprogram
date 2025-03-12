@@ -1,0 +1,9 @@
+<!-- 确保有基础结构 -->
+<view class="container">
+  <text>{{currentQuestion.text}}</text>
+  <view wx:for="{{currentQuestion.options}}" wx:key="index">
+    <button bindtap="selectOption" data-type="{{item.type}}">
+      {{item.text}}
+    </button>
+  </view>
+</view>
