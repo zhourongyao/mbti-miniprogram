@@ -12,8 +12,8 @@
 
 <!-- C区：按钮组 -->
 <view class="btn-group" style="position: relative; left: 50rpx; top: -60rpx; width: 650rpx; height: 75rpx; display: flex; box-sizing: border-box">
-  <button class="btn btn1" bindtap="handleBtn1" style="width: 293rpx; height: 75rpx; display: block; box-sizing: border-box; left: 342rpx; top: 0rpx; position: relative">分享给小伙伴</button>
-  <button class="btn btn2" bindtap="handleBtn2" style="width: 293rpx; height: 75rpx; display: block; box-sizing: border-box; left: -342rpx; top: 0rpx; position: relative">测试说明</button>
+  <button class="btn btn1" bindtap="handleBtn1" style="width: 293rpx; height: 75rpx; display: block; box-sizing: border-box; left: 336rpx; top: 0rpx; position: relative">分享给小伙伴</button>
+  <button class="btn btn2" bindtap="handleBtn2" style="width: 239rpx; height: 75rpx; display: block; box-sizing: border-box; left: -341rpx; top: -2rpx; position: relative">测试说明</button>
 </view>
 
 <!-- D区：测试入口 -->
@@ -32,6 +32,6 @@
 </view>
 
 <!-- E区：文档区 -->
-<view class="doc-area" style="height: 743rpx; display: block; box-sizing: border-box; position: relative; left: 0rpx; top: -24rpx">
+<view class="doc-area" style="height: 743rpx; display: block; box-sizing: border-box; position: relative; left: 0rpx; top: -16rpx">
   <rich-text nodes="{{docContent}}" style="height: 362rpx; display: inline; box-sizing: content-box"></rich-text>
 </view>

@@ -1,55 +1,63 @@
-<!-- pages/detail/detail.wxml # 修正后的结构3.12/20.17 --> 
+<!-- pages/detail/detail.wxml -->
 <!-- 加载状态 -->
 <view wx:if="{{loading}}" class="loading">
   <text>数据加载中...</text>
 </view>
 
 <!-- 主容器 -->
-<view class="container" style="position: relative; left: 0rpx; top: 0rpx; height: 1762rpx; display: flex; box-sizing: border-box">
+<view class="container" style="position: relative; left: 0rpx; top: -41rpx; height: 1762rpx; display: flex; box-sizing: border-box">
 
-  <!-- A1区 --><!-- A1区修正style保持原有的没变,后期注意以下影响 -->
-  <view class="section a1" style="position: relative; left: 0rpx; top: -175rpx; height: 399rpx; display: block; box-sizing: border-box; width: 690rpx">
-    <image 
-      src="{{typeData.image}}" 
+  <!-- A1区 -->
+  <view class="section a1" style="position: relative; left: 0rpx; top: -197rpx; height: 822rpx; display: block; box-sizing: border-box; width: 690rpx">
+    <image style="height: 302rpx; display: inline-block; box-sizing: border-box" 
+      src="{{typeData.banner}}" 
       mode="aspectFill"
       class="a1-image"
     />
   </view>
 
   <!-- A2区 -->
-  <view class="section a2" style="position: relative; left: -197rpx; top: -195rpx; width: 295rpx; display: block; box-sizing: border-box; height: 52rpx">
+  <view class="section a2" style="position: relative; left: -209rpx; top: -216rpx; width: 295rpx; display: block; box-sizing: border-box; height: 137rpx">
     <view 
       class="title-tag" 
       style="background: {{typeColor}}; width: 22rpx; height: 48rpx; left: 20rpx; top: -2rpx; display: inline-block; box-sizing: border-box; position: relative"
     ></view>
-    <text class="title-text" style="left: 10rpx; top: 1rpx">性格分析</text>
+    <text class="title-text" style="left: 38rpx; top: 4rpx; position: relative">性格特征</text>
   </view>
 
-  <!-- A3区 --> <!-- A3区修正style保持原有的没变,后期注意以下影响 -->
-  <view class="section a3" style="width: 689rpx; left: 1rpx; top: -222rpx; height: 243rpx; display: flex; box-sizing: border-box; position: relative">
-    <view 
-      wx:for="{{features}}" 
-      wx:key="index" 
-      class="feature-tag"  
-     style="width: 200rpx; display: block; box-sizing: border-box">
-      {{item.text}}
-    </view>
+<!-- A3区域容器 -->
+  <view 
+    class="a3-container" 
+    style="position: relative; width: 712rpx; height: 781rpx; left: 0rpx; top: -220rpx; display: block; box-sizing: border-box"
+  >
+    <block wx:for="{{typeData.features}}" wx:key="index">
+      <!-- 每个特征标签 -->
+      <view 
+        class="feature-tag"
+        style="color: {{item.color}}; font-size: {{item.size}}rpx;  font-family:{{item.fontFamily || 'sans-serif'}};font-weight:{{item.fontWeight || 'normal'}};font-style:{{item.fontStyle || 'normal'}};position: absolute; left: {{item.position.x}}; top: {{item.position.y}}; transform: translate(-50%,-50%); z-index: {{index}}"
+      >
+        {{item.text}}
+      </view>
+    </block>
   </view>
 
   <!-- A4区 -->
-  <view class="section a4" style="left: -197rpx; top: -254rpx; width: 295rpx; position: relative; display: block; box-sizing: border-box">
+  <view 
+    class="section a4" 
+    style="position: relative; left: -209rpx; top: -204rpx; width: 295rpx; height: 139rpx; z-index: 1; display: block; box-sizing: border-box"
+  >
     <view 
       class="title-tag" 
-      style="background: {{typeColor}}; width: 25rpx; height: 48rpx; left: 20rpx; top: -3rpx; display: inline-block; box-sizing: border-box; position: relative"
+      style="background: {{typeColor}}; width: 22rpx; height: 48rpx; left: 20rpx; top: -6rpx; display: inline-block; box-sizing: border-box; position: relative"
     ></view>
-    <text class="title-text" style="left: 34rpx; top: 0rpx; position: relative">性格分析</text>
+    <text class="title-text" style="left: 38rpx; top: -1rpx; position: relative">性格分析</text>
   </view>
 
-  <!-- A5区 --><!-- A5区修正style保持原有的没变,后期注意以下影响 -->
-  <view class="section a5" style="left: 2rpx; top: -254rpx; height: 474rpx; display: block; box-sizing: border-box; width: 690rpx; position: relative">
-    <rich-text 
-      nodes="{{analysisNodes}}" 
-      class="rich-content"
-    ></rich-text>
+  <!-- A5区 -->
+  <view class="a5-content">
+  <rich-text nodes="{{typeData.a5Nodes}}"></rich-text>
   </view>
-</view> <!-- 正确的唯一闭合标签 -->
+  <view class="container">
+  <towxml nodes="{{article}}" />
+  </view>
+</view>

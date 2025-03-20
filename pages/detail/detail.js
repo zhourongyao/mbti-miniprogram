@@ -1,108 +1,75 @@
-// pages/detail/detail.js   # 更新后的逻辑3.12/20.16
-const personalityData = require('../../utils/data/personality-data')
-const colorConfig = require('../../utils/data/color-config')
+// pages/detail/detail.js
+const app = getApp();
+
+const personalityData = require('../../utils/data/personality-data');
+const colorConfig = require('../../utils/data/color-config');
+
 
 Page({
   data: {
-    typeColor: '#4A90E2',  // 默认颜色
-    personalityData: {},          // 类型数据
-    analysisNodes: [],      // A5区数据
-    features: [], // 新增特征数据字段
-    loading: true // 新增加载状态
+    typeColor: '#4A90E2',
+    typeData: {},
+    analysisNodes: [],
+    loading: true,
+    article: {}
   },
 
   onLoad(options) {
-    const type = options.type || 'INTJ'
-    this.loadpersonalityData(type)
-  },
+    const type = decodeURIComponent(options.type);
+    const data = personalityData[type] || {};
 
-  // 修改loadpersonalityData方法
-  loadpersonalityData(type) {
-          
-    const color = colorConfig[type] || '#4A90E2'  //引用color-config.js独立颜色配置文件如果不存在 → 使用默认的蓝色
 
-          // ======== 关键修改开始 ========
-    const data = personalityData[type] || {
-      image: '/images/default-banner.jpg',
-      features: ['数据加载中...'],
-      analysis: { content: [] }
-    }
-      // ======== 关键修改结束 ========
+    this.setData({
+      typeData: {
+        features: data.features || [], // A3数据
+        details: data.details || { A3: '', A5: '' }, // A3/A5文本
+        banner: data.banner || '/images/default-banner.jpg',
 
-        // 处理特征数据
-    const features = data.features || []
-       // 处理富文本节点
-    const nodes = data.analysis?.content?.map(item => {
-            // ...保持原有处理逻辑不变...
-      switch(item.type) {
-        case 'title':
-          return {
-            name: 'view',
-            attrs: { style: item.style + ';font-weight:bold' },
-            children: [{ type: 'text', text: item.text }]
-          }
-        case 'paragraph':
-          return {
-            name: 'view',
-            attrs: { style: item.style },
-            children: [{ type: 'text', text: item.text }]
-          }
-        case 'list':
-          return {
-            name: 'view',
-            attrs: { style: item.style },
-            children: item.items.map(text => ({
-              name: 'view',
-              children: [
-                { 
-                  name: 'text', 
-                  attrs: { style: 'margin-right:10rpx' },
-                  text: item.bullet || '•'
-                },
-                { type: 'text', text: text }
-              ]
-            }))
-          }
-        case 'image':
-          return {
-            name: 'img',
-            attrs: { 
-              src: item.src,
-              style: item.style + ';display:block'
-            }
-          }
-        case 'warning':
-          return {
-            name: 'view',
-            attrs: { class: 'warning' },
-            children: [
-              {name:'text', text: '⚠️ ' },
-              {
-                name: 'text', 
-                attrs: { class: 'highlight' },
-                text: item.text 
-              }
-            ]
-          }
-        default:
-          return { name: 'text', text: item.text }
       }
-    })
+    });
+  },
+    // 切换标签（A3/A5）
+    switchTab(e) {
+      this.setData({ activeTab: e.currentTarget.dataset.tab });
+    },
+
+
+  loadData(type) {
+    const color = colorConfig[type] || '#4A90E2';
+    const data = personalityData[type] || {
+      banner: '/images/default-banner.jpg',
+      features: [],
+      details: { A3: '数据加载中...', A5: '数据加载中...' }
+    };
+
+    // 处理特征标签数据
+    const features = data.features || [];
+    
+    // 处理富文本内容（保持原有逻辑）
+    const nodes = [];
+    if (data.details && data.details.A3) {
+      nodes.push({
+        name: 'text',
+        text: data.details.A3
+      });
+    }
+
     this.setData({
       typeColor: color,
-      personalityData: data,
-      features: features, // 新增特征数据绑定
+      typeData: data,
       analysisNodes: nodes,
       loading: false
-    })
-
+    });
   },
-     // 新增默认数据方法
-  getDefaultData() {
-    return {
-      image: '/images/default-banner.jpg',
-      features: ['数据加载中...'],
-      analysis: { content: [] }
-    }
-  }
-})
+  // 修改标签位置示例方法
+  updateTagPosition(e) {
+    const index = e.currentTarget.dataset.index; // 当前标签索引
+    const newX = "30%"; // 新X坐标 (根据实际需求计算)
+    const newY = "50%"; // 新Y坐标
+
+    this.setData({
+      [`typeData.features[${index}].position`]: { x: newX, y: newY }
+    });
+}
+
+});

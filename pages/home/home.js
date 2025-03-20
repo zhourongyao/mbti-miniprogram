@@ -2,9 +2,9 @@ Page({
   data: {
     // A区数据
     banners: [
-      '/images/banner1.jpg',
-      '/images/banner2.jpg',
-      '/images/banner3.jpg'
+      '/images/banners/banner1.jpg',
+      '/images/banners/banner2.jpg',
+      '/images/banners/banner3.jpg'
     ],
 
     // D区数据

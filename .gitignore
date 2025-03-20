@@ -1,3 +1,5 @@
+node_modules/
+project.config.json  # 如果包含小程序 appid
 # Windows
 [Dd]esktop.ini
 Thumbs.db

@@ -48,9 +48,9 @@
   color: white;
 }
 .btn2 {
-  background: #fff;
-  color: #4A90E2;
-  border: 2rpx solid #4A90E2;
+  background: rgb(252, 249, 249);
+  color: #890aff00;
+  border: 2rpx solid #ff000000;
 }
 
 /* D区：测试入口 */

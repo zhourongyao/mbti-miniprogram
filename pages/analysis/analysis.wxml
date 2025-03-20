@@ -5,33 +5,29 @@
 </view>
 
 <!-- 主内容容器 -->
-<view wx:else class="container" style="width: 685rpx; display: flex; box-sizing: border-box; height: 1904rpx; position: relative; left: 33rpx; top: 27rpx">
+<view wx:else class="container" style="width: 790rpx; display: flex; box-sizing: border-box; height: 1931rpx; position: relative; left: 0rpx; top: 0rpx">
   <!-- 四色分组 -->
   <block wx:for="{{types}}" wx:key="index">
-    <view class="type-group" style="height: 426rpx; display: block; box-sizing: border-box; width: 554rpx; position: relative; left: 0rpx; top: 25rpx">
+    <view class="type-group" style="height: 479rpx; display: block; box-sizing: border-box; width: 581rpx; position: relative; left: 0rpx; top: 25rpx">
       <!-- 组标题 -->
-      <view class="group-title" style="position: relative; left: 118rpx; top: -74rpx; width: 262rpx; height: 166rpx; display: flex; box-sizing: border-box">
+      <view class="group-title" style="position: relative; left: 131rpx; top: -75rpx; width: 262rpx; height: 166rpx; display: flex; box-sizing: border-box">
         <text class="color-tag" style="background:{{item.colorCode}}"></text>
         {{item.title}}
       </view>
 
       <!-- 人格类型网格 -->
-      <view class="type-grid" style="position: relative; left: 0rpx; top: -93rpx">
+      <view class="type-grid" style="position: relative; left: -8rpx; top: -125rpx; height: 410rpx; display: grid; box-sizing: border-box; width: 560rpx">
         <view 
           wx:for="{{item.list}}" 
           wx:key="index" 
           class="type-item"
           bindtap="handleTypeTap"
-          data-type="{{item.name}}"
-          style="height: 133rpx; width: 235rpx; position: relative; left: 0rpx; top: -10rpx">
-          <image style="height: 84rpx; display: inline-block; box-sizing: border-box" 
-            class="type-image"
-            src="{{item.image}}" 
-            mode="aspectFill"
-          />
-          <text class="type-name" style="height: 62rpx; display: block; box-sizing: border-box; width: 234rpx; position: relative; left: 0rpx; top: -20rpx">{{item.name}}</text>
+          data-type="{{item.name}}" 
+         style="position: relative; left: 0rpx; top: 12rpx; height: 162rpx; display: block; box-sizing: border-box; width: 249rpx">
+          <image style="height: 118rpx; display: inline-block; box-sizing: border-box"  src="{{item.image}}" />
+          <text style="position: relative; left: 0rpx; top: -27rpx; height: 64rpx; display: block; box-sizing: border-box">{{item.name}}</text>
         </view>
-      </view>
-    </view>
+      </view> <!-- 新增闭合标签 -->
+    </view> <!-- 确保 type-group 视图闭合 -->
   </block>
 </view>
